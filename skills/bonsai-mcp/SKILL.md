@@ -1,3 +1,8 @@
+---
+name: bonsai-mcp
+description: Generate images using the Bonsai 4B text-to-image diffusion model via the bonsai-mcp MCP server. Use when the user wants to generate an image, create a picture, visualize a concept, or make AI art.
+---
+
 # Bonsai Image Generation
 
 Generate images using the Bonsai 4B text-to-image diffusion model via the `bonsai-mcp` MCP server.
