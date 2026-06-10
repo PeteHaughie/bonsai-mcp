@@ -5,7 +5,13 @@ description: Generate images using the Bonsai 4B text-to-image diffusion model v
 
 # Bonsai Image Generation
 
-Generate images using the Bonsai 4B text-to-image diffusion model via the `bonsai-mcp` MCP server.
+Generate images using the Bonsai 4B text-to-image diffusion model.
+
+## How to invoke (IMPORTANT — read first)
+
+The MCP server named **`bonsai`** is already configured and running in this environment. Do NOT try to invoke `bonsai-mcp` as a shell command — it will fail with "command not found".
+
+**To generate an image, call the `generate_image` tool via your MCP tool-calling mechanism.** This is not a bash command — use the same mechanism you would use to call any other MCP tool (e.g., via `use_mcp_tool` or your built-in tool calling). The tool is provided by the `bonsai` MCP server.
 
 ## Prerequisites
 
