@@ -3,11 +3,7 @@ name: bonsai-mcp
 description: Generate images using the Bonsai 4B text-to-image diffusion model via the bonsai-mcp MCP server. Use when the user wants to generate an image, create a picture, visualize a concept, or make AI art.
 ---
 
-An MCP tool called **`generate_image`** (on the `bonsai` server) is already configured and available in this environment. When the user asks for an image, call it.
-
-> Do NOT run shell commands for image generation. Use the `generate_image` MCP tool only.
-
-**Before proceeding:** list your available MCP tools. Confirm `generate_image` is present before continuing.
+Call the `generate_image` tool (from the `bonsai` MCP server) with the user's prompt.
 
 ## Parameters
 
@@ -25,7 +21,7 @@ An MCP tool called **`generate_image`** (on the `bonsai` server) is already conf
 ```json
 {
   "status": "ok",
-  "output_path": "/path/to/outputs/mcp/image_20260528_120000_seed42.png",
+  "output_path": "/path/to/outputs/mcp/image.png",
   "seed": 42,
   "duration_seconds": 3.2,
   "stages": { "setup_s": 2.1, "diffusion_s": 1.1 },
@@ -39,12 +35,7 @@ On error, `status` is `"error"` and an `"error"` field describes the problem.
 
 ## Setup & reference (handled by the operator, not the agent)
 
-The `bonsai` MCP server is already running. The operator has completed all prerequisites:
-
-- Bonsai-Image-Demo repo at `BONSAI_IMAGE_DEMO_DIR`
-- `./setup.sh` and `./scripts/download_model.sh` run
-- Model weights at `models/bonsai-image-4B-*`
-- Hardware: macOS Apple Silicon (MLX) or Linux NVIDIA GPU (CUDA)
+The `bonsai` MCP server is already running and set up. Prerequisites completed, model weights present.
 
 | Env var | Purpose |
 |---------|---------|
@@ -55,5 +46,3 @@ The `bonsai` MCP server is already running. The operator has completed all prere
 
 - Dimensions must be multiples of 16 (recommended: 512×512 fast, 1024×1024 quality)
 - Generated PNGs land at `{BONSAI_OUTPUT_DIR}`
-- Platform behavior: macOS MLX (few-second cold start), Linux CUDA/gemlite (25–30s cold start)
-- VRAM allocated only during generation, freed on subprocess exit
