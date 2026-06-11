@@ -3,7 +3,19 @@ name: bonsai-mcp
 description: Generate images using the Bonsai 4B text-to-image diffusion model via the bonsai-mcp MCP server. Use when the user wants to generate an image, create a picture, visualize a concept, or make AI art.
 ---
 
-Call the `generate_image` tool (from the `bonsai` MCP server) with the user's prompt.
+An MCP tool called **`generate_image`** (on the `bonsai` server) is already configured and injected into the **Huxley daemon's model tool definitions** (`huxley tools`). The underlying LLM can call it via OpenAI `tool_calls` when you prompt it through the daemon's API at `http://localhost:8083/v1/chat/completions`.
+
+> Do NOT run shell commands for image generation. Do NOT look for `generate_image` in your own agent tool list — it is a **model-level injected tool**, not a direct agent tool.
+
+**How to use it:** Simply ask the model to generate an image. The model will automatically call `generate_image` via `tool_calls`:
+
+```bash
+curl -s http://localhost:8083/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{"model": "alpha", "messages": [{"role": "user", "content": "generate an image of..."}], "max_tokens": 800}'
+```
+
+**To verify the tool is registered:** run `huxley tools` and confirm `mcp:bonsai|generate_image` appears in the output.
 
 ## Parameters
 
